@@ -23,7 +23,7 @@ export default {
     },
     subDomain: {
         isSubDomainMode,
-        rootDomain: PAGE_ENV === currentRootDomain,
+        rootDomain: currentRootDomain,
         cookieExpires: 14,
     },
     theme: [
