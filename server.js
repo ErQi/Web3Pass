@@ -22,7 +22,7 @@ app.use(
 
 const getName = async (host, url) => {
     if (host.split('.').length > 2) {
-        return /^(.+?)\.rss3\.[^.]+$/.exec(host)[1];
+        return /^(.+?)\.[^.]+$/.exec(host)[1];
     } else {
         return /^\/(.+?)\//.exec(url + '/')?.[1];
     }
