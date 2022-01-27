@@ -215,41 +215,6 @@
                             </template>
                         </TransBarCard>
 
-                        <TransBarCard
-                            title="Donations"
-                            :tip="isLoadingAssets.Gitcoin ? 'loading' : isOwner ? 'ownerEmpty' : 'notOwnerEmpty'"
-                            :haveDetails="false"
-                            :haveContent="true"
-                            :haveContentInfo="gitcoins.length > 0"
-                        >
-                            <template #header>
-                                <i v-if="isOwner" class="bx bx-pencil bx-xs cursor-pointer" @click="toManageGitcoins" />
-                            </template>
-                            <template #content>
-                                <GitcoinItem
-                                    class="mr-1 cursor-pointer"
-                                    v-for="item in gitcoins"
-                                    :key="item.id"
-                                    size="sm"
-                                    :imageUrl="item.detail.grant.logo || undefinedImage"
-                                    @click="toSingleItemPage(item.id)"
-                                />
-                            </template>
-                            <template #button>
-                                <Button
-                                    size="sm"
-                                    class="w-8 h-8 text-btn-icon bg-secondary-btn-card"
-                                    @click="toListPage('Gitcoins')"
-                                >
-                                    <i class="bx bx-expand-alt bx-xs" />
-                                </Button>
-                            </template>
-                        </TransBarCard>
-                    </div>
-                </section>
-
-                <section class="md:w-2/5">
-                    <div class="affix-container sticky">
                         <TransBarCard title="Content" :haveDetails="true" :haveContent="false">
                             <template #header>
                                 <div
@@ -330,6 +295,14 @@
                                     </template>
                                 </div>
                             </template>
+                        </TransBarCard>
+                    </div>
+                </section>
+
+                <section class="md:w-2/5">
+                    <div class="affix-container sticky">
+                        <TransBarCard title="resume" :haveDetails="true" :haveContent="false">
+                            <VueMarkdown :source="htmlMD"></VueMarkdown>
                         </TransBarCard>
                     </div>
                 </section>
@@ -440,6 +413,8 @@ import Smile from '@/components/Icons/Smile.vue';
 import LoadingSmile from '@/components/Loading/LoadingSmile.vue';
 import { flattenDeep } from 'lodash';
 import { formatter } from '@/common/address';
+import VueMarkdown from 'vue-markdown';
+import axios from 'axios';
 
 interface Relations {
     followers: string[];
@@ -469,6 +444,7 @@ interface Relations {
         AccountModal,
         Smile,
         LoadingSmile,
+        VueMarkdown,
     },
 })
 export default class Home extends Vue {
@@ -556,7 +532,13 @@ export default class Home extends Vue {
         this.mountScrollEvent();
     }
 
+    htmlMD = '';
     async initLoad() {
+        const url = `https://api.github.com/repos/NaturalSelectionLabs/RSS3-Hub-Data/contents/READMEmd?ref=main`;
+        axios.get(url).then((response) => {
+            this.htmlMD = response.data;
+        });
+
         this.lastRoute = this.$route.fullPath;
 
         (<HTMLLinkElement>document.getElementById('favicon')).href = '/favicon.ico';
