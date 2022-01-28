@@ -303,7 +303,7 @@
                     <div class="affix-container sticky">
                         <TransBarCard title="resume" :haveDetails="true" :haveContent="false" />
                         <!--  自定义组件  -->
-                        <Markdown>哈哈哈</Markdown>
+                        <Markdown></Markdown>
                         <!--  自定义组件  -->
                     </div>
                 </section>

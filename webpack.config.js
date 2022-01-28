@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+
 module.exports = (env, argv) => ({
     devtool: argv.mode === 'production' ? false : 'inline-cheap-module-source-map',
     entry: {
@@ -118,7 +119,11 @@ module.exports = (env, argv) => ({
             },
             {
                 test: /\.md$/,
-                loader: 'vue-markdown-loader',
+                use: [
+                    {
+                        loader: 'html-loader',
+                    },
+                ],
             },
         ],
     },
