@@ -301,9 +301,10 @@
 
                 <section class="md:w-2/5">
                     <div class="affix-container sticky">
-                        <TransBarCard title="resume" :haveDetails="true" :haveContent="false">
-                            <VueMarkdown :source="htmlMD"></VueMarkdown>
-                        </TransBarCard>
+                        <TransBarCard title="resume" :haveDetails="true" :haveContent="false" />
+                        <!--  自定义组件  -->
+                        <Markdown>哈哈哈</Markdown>
+                        <!--  自定义组件  -->
                     </div>
                 </section>
 
@@ -379,6 +380,7 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import Markdown from '@/components/Markdown/Markdown.vue';
 import Button from '@/components/Button/Button.vue';
 import BarCard from '@/components/Card/BarCard.vue';
 import Profile from '@/components/Profile/Profile.vue';
@@ -413,8 +415,6 @@ import Smile from '@/components/Icons/Smile.vue';
 import LoadingSmile from '@/components/Loading/LoadingSmile.vue';
 import { flattenDeep } from 'lodash';
 import { formatter } from '@/common/address';
-import VueMarkdown from 'vue-markdown';
-import axios from 'axios';
 
 interface Relations {
     followers: string[];
@@ -444,7 +444,7 @@ interface Relations {
         AccountModal,
         Smile,
         LoadingSmile,
-        VueMarkdown,
+        Markdown,
     },
 })
 export default class Home extends Vue {
@@ -532,12 +532,13 @@ export default class Home extends Vue {
         this.mountScrollEvent();
     }
 
-    htmlMD = '';
+    // htmlMD = '';
     async initLoad() {
-        const url = `https://api.github.com/repos/NaturalSelectionLabs/RSS3-Hub-Data/contents/READMEmd?ref=main`;
-        axios.get(url).then((response) => {
-            this.htmlMD = response.data;
-        });
+        // const url = `https://api.github.com/repos/NaturalSelectionLabs/RSS3-Hub-Data/contents/README.md?ref=main`;
+        // axios.get(url).then((response) => {
+        //     this.htmlMD = response.data.content;
+        //     console.log(this.htmlMD)
+        // });
 
         this.lastRoute = this.$route.fullPath;
 

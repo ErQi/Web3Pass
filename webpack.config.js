@@ -116,6 +116,10 @@ module.exports = (env, argv) => ({
                 include: /node_modules/,
                 type: 'javascript/auto',
             },
+            {
+                test: /\.md$/,
+                loader: 'vue-markdown-loader',
+            },
         ],
     },
     plugins: [
