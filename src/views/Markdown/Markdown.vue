@@ -10,25 +10,24 @@ import config from '@/config';
 import axios from 'axios';
 import BASE64Util from '@/common/base64';
 
-let mdText = '';
 // 通过html-loader 加载本地md文件.  再通过marked转成html格式, 最后引入markdown-it-vue.css 完成渲染
 export default {
-    created() {
-        console.log('加载完毕');
-        axios.get(config.mdUrl).then((response) => {
-            mdText = response.data.content;
-            mdText = BASE64Util.base64_decode(mdText);
-            mdText = marked(mdText || '', {
-                sanitize: true,
-            });
-            console.log(mdText);
-        });
-    },
     data() {
         return {
             md,
-            mdText,
+            mdText: '',
         };
+    },
+    created() {
+        console.log('加载完毕');
+        axios.get(config.mdUrl).then((response) => {
+            this.mdText = response.data.content;
+            this.mdText = BASE64Util.base64_decode(this.mdText);
+            this.mdText = marked(this.mdText || '', {
+                sanitize: true,
+            });
+            console.log(this.mdText);
+        });
     },
     computed: {
         // 加载本地文件的形式
