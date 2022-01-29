@@ -18,6 +18,8 @@ import EditProfile from '@/views/Setup/EditProfile.vue';
 import RNS from '@/views/Setup/RNS.vue';
 import RNSPending from '@/views/Setup/RNSPending.vue';
 import Setup from '@/views/Setup/Setup.vue';
+import Markdown from '@/views/Markdown/Markdown.vue';
+
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 const basePath = config.subDomain.isSubDomainMode ? '/' : '/:address/';
@@ -113,6 +115,11 @@ export const routes: RouteRecordRaw[] = [
         path: '/pending',
         name: 'RNSPending',
         component: RNSPending,
+    },
+    {
+        path: '/resume',
+        name: 'resume',
+        component: Markdown,
     },
 ];
 

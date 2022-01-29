@@ -1,5 +1,5 @@
 <template>
-    <article class="markdown-body" v-html="loadMarkdown" />
+    <article className="markdown-body" v-html="mdText"></article>
 </template>
 
 <script>
@@ -13,9 +13,21 @@ import BASE64Util from '@/common/base64';
 let mdText = '';
 // 通过html-loader 加载本地md文件.  再通过marked转成html格式, 最后引入markdown-it-vue.css 完成渲染
 export default {
+    created() {
+        console.log('加载完毕');
+        axios.get(config.mdUrl).then((response) => {
+            mdText = response.data.content;
+            mdText = BASE64Util.base64_decode(mdText);
+            mdText = marked(mdText || '', {
+                sanitize: true,
+            });
+            console.log(mdText);
+        });
+    },
     data() {
         return {
             md,
+            mdText,
         };
     },
     computed: {
@@ -28,19 +40,9 @@ export default {
             return s;
         },
         // 加载githubUrl的形式
-        loadMarkdown: function () {
-            axios.get(config.mdUrl).then((response) => {
-                mdText = response.data.content;
-                mdText = BASE64Util.base64_decode(mdText);
-                mdText = marked(mdText || '', {
-                    sanitize: true,
-                });
-                // console.log(mdText)
-                return mdText;
-            });
-        },
+        loadMarkdown: function () {},
     },
 };
 </script>
 
-<style scoped></style>
+<style></style>

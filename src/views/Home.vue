@@ -301,7 +301,7 @@
 
                 <section class="md:w-2/5">
                     <div class="affix-container sticky">
-                        <TransBarCard title="resume" :haveDetails="true" :haveContent="false" />
+                        <TransBarCard title="resume" :haveDetails="true" :haveContent="false" @click="toResume" />
                         <!--  自定义组件  -->
                         <Markdown></Markdown>
                         <!--  自定义组件  -->
@@ -380,7 +380,7 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import Markdown from '@/components/Markdown/Markdown.vue';
+import Markdown from '@/views/Markdown/Markdown.vue';
 import Button from '@/components/Button/Button.vue';
 import BarCard from '@/components/Card/BarCard.vue';
 import Profile from '@/components/Profile/Profile.vue';
@@ -1113,6 +1113,10 @@ export default class Home extends Vue {
             } // else TODO
             this.isLastScrollingDown = isScrollDown;
         }
+    }
+
+    toResume() {
+        this.$router.push('/resume');
     }
 }
 </script>
