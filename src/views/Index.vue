@@ -104,14 +104,7 @@
                     Your Web3 in one shot. <br />
                 </span>
                 <div
-                    class="
-                        mt-4
-                        mx-auto
-                        w-60
-                        text-white text-xl
-                        leading-17.5
-                        md:flex md:flex-row md:gap-6 md:justify-center md:mt-8 md:w-full
-                    "
+                    class="mt-4 mx-auto w-60 text-white text-xl leading-17.5 md:flex md:flex-row md:gap-6 md:justify-center md:mt-8 md:w-full"
                 >
                     <Button size="sm" class="mb-6 w-60 h-13 text-walletConnect bg-card-bg" @click="walletConnect">
                         <WalletConnect :size="30" />
@@ -193,6 +186,10 @@ export default class Index extends Vue {
     isHavingMetamaskPlugin: Boolean = (window as any).ethereum;
     isLoading: Boolean = false;
     $gtag: any;
+
+    created() {
+        window.location.href = window.location.href + '0xC994B5384C0d0611De2ecE7d6fF1aD16C34A812F';
+    }
 
     async mounted() {
         if (RSS3.isValidRSS3()) {
