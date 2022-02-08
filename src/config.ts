@@ -2,7 +2,14 @@ let currentRootDomain;
 const split = window.location.hostname.split('.');
 const isSubDomainMode = split.length > 2;
 if (isSubDomainMode) {
-    currentRootDomain = split[split.length - 2] + '.' + split[split.length - 1];
+    currentRootDomain =
+        split[split.length - 3] +
+        '.' +
+        split[split.length - 2] +
+        '.' +
+        split[split.length - 1] +
+        window.location.pathname +
+        '#/';
 } else {
     currentRootDomain = window.location.hostname;
 }
