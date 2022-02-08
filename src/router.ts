@@ -20,7 +20,7 @@ import RNSPending from '@/views/Setup/RNSPending.vue';
 import Setup from '@/views/Setup/Setup.vue';
 import Markdown from '@/views/Markdown/Markdown.vue';
 
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
 const basePath = config.subDomain.isSubDomainMode ? '/' : '/:address/';
 
@@ -132,7 +132,7 @@ if (!config.subDomain.isSubDomainMode) {
 }
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes,
 });
 

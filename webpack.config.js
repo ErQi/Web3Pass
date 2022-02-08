@@ -17,7 +17,7 @@ module.exports = (env, argv) => ({
                 ? process.env.PAGE_ENV === 'development'
                     ? 'https://rss3.co/'
                     : 'https://rss3.bio/'
-                : '/',
+                : './',
         clean: true,
     },
     resolve: {
