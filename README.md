@@ -134,16 +134,18 @@ import 'markdown-it-vue/dist/markdown-it-vue.css';
 
 最终解决办法绕了点,在首页里面直接重定向到首页.
 
-`/views/Index.vue`文件中在初始创建的生命周期方法中直接重定向到对应的用户地址里面去.
+需要展示某个用户数据直接修改 `src/config.ts` 中的 `address`即可.
+
+### 部署
+
+下载项目之后根据自己的需求修改 `src/config.ts` 中的钱包地址和对应的 md 文件 url 地址.
 
 ```
-export default class Index extends Vue {
-
+export default {
+    address: '0xC994B5384C0d0611De2ecE7d6fF1aD16C34A812F',
+    mdUrl: 'https://api.github.com/repos/komomoo/vuepress-theme-resume/contents/example/README.md?ref=master',
     ...
-
-    created(){
-        // 如果需要展示其他用户的信息,直接修改后方的钱包地址即可.
-        window.location.href = (window.location.href + '0xC994B5384C0d0611De2ecE7d6fF1aD16C34A812F')
-    }
-
+}
 ```
+
+接着 使用 `webpack` 指令打包,打包出来的即可正常访问(打包时间比较长,无进度条,需要耐心等候,约 1 分钟左右.)

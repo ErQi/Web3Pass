@@ -16,7 +16,7 @@ if (isSubDomainMode) {
 
 export default {
     address: '0xC994B5384C0d0611De2ecE7d6fF1aD16C34A812F',
-    mdUrl: 'https://api.github.com/repos/komomoo/vuepress-theme-resume/contents/example/README.md?ref=master',
+    mdUrl: 'https://api.github.com/repos/bjianhang/markdown-resume-template/contents/简历.md?ref=master',
     infuraId: [
         '76af1228cdf345d2bff6a9c0f35112e1',
         'cddf9c43e60e4fee9dd875f3f88f6c0a',
