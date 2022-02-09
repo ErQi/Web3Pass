@@ -292,7 +292,8 @@ const isAssetNotHidden = async (asset: RSS3AutoAsset | RSS3CustomAsset, _passAss
 function getAddress(routerAddress: string) {
     if (legacyConfig.subDomain.isSubDomainMode) {
         // Is subdomain mode
-        return window.location.host.split('.').slice(0, -2).join('.');
+        // return window.location.host.split('.').slice(0, -2).join('.');
+        return legacyConfig.address;
     } else {
         return routerAddress;
     }

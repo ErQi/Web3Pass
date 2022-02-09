@@ -15,6 +15,7 @@ if (isSubDomainMode) {
 }
 
 export default {
+    address: '0xC994B5384C0d0611De2ecE7d6fF1aD16C34A812F',
     // md文件的请求路径
     mdUrl: 'https://api.github.com/repos/WeLightProject/WeLightBlockchainOS/contents/README.md?ref=main',
     infuraId: [

@@ -804,8 +804,8 @@ export default class Home extends Vue {
 
             utils.setCrossDomainStorage('redirectFrom', window.location.href); // Cross domain redirect
             if (legacyConfig.subDomain.isSubDomainMode) {
-                window.location.href = '//' + legacyConfig.subDomain.rootDomain;
-            } else {
+                //     window.location.href = '//' + legacyConfig.subDomain.rootDomain;
+                // } else {
                 await this.$router.push('/');
             }
         }
@@ -961,16 +961,16 @@ export default class Home extends Vue {
     }
 
     async toHomePage() {
-        // if (!this.isOwner && this.isOwnerValidRSS3) {
-        const ownerRNS = await RNSUtils.addr2Name(this.ownerETHAddress);
-        if (ownerRNS) {
-            window.location.href = '//' + ownerRNS + '.' + legacyConfig.subDomain.rootDomain;
+        if (!this.isOwner && this.isOwnerValidRSS3) {
+            const ownerRNS = await RNSUtils.addr2Name(this.ownerETHAddress);
+            if (ownerRNS) {
+                window.location.href = '//' + ownerRNS + '.' + legacyConfig.subDomain.rootDomain;
+            } else {
+                await this.$router.push(`/${this.ownerETHAddress}`);
+            }
         } else {
-            await this.$router.push(`/${this.ownerETHAddress}`);
+            window.location.href = '//' + legacyConfig.subDomain.rootDomain;
         }
-        // } else {
-        //     window.location.href = '//' + legacyConfig.subDomain.rootDomain;
-        // }
     }
 
     toContentLink(content: any) {

@@ -188,7 +188,7 @@ export default class Index extends Vue {
     $gtag: any;
 
     created() {
-        window.location.href = window.location.href + '0xC994B5384C0d0611De2ecE7d6fF1aD16C34A812F';
+        window.location.href = window.location.href + config.address;
     }
 
     async mounted() {
